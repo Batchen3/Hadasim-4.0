@@ -28,11 +28,17 @@ namespace MyApp
                     if(tWidth % 2 == 1 && tWidth < 2 * tHeight)
                     {
                         //Calculation for the middle rows
+                        int numStar, firstNum, divider;
                         int numOdd = (tWidth - 2) / 2;
                         int remainder = tHeight - 2;
-                        int divider = remainder / numOdd;
-                        int firstNum = remainder % numOdd + divider;
-                        int numStar = 3;
+                        if (numOdd == 0)//if tWidth==1
+                            numStar = firstNum= divider=1;
+                        else
+                        {
+                            divider = remainder / numOdd;
+                            firstNum = remainder % numOdd + divider;
+                            numStar = 3;
+                        }
                         bool isStart = true;
 
                         for (int i = 1; i <= tHeight;)
@@ -88,7 +94,8 @@ namespace MyApp
                     Console.Write("*");
                 Console.WriteLine();
             }
-            numstars += 2;
+            if(numstars!=1)
+                numstars += 2;
         }
 
         public static void Main(string[] args)

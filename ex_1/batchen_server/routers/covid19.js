@@ -26,10 +26,11 @@ router.get("/:id", async(req, res, next) => {
 router.put('/update', async function(req, res, next) {
     try {
         let covid19User = await covid19.getCovid19ByID(req.body.idClient)
+        let result;
         if (covid19User.length == 0)
-            await covid19.createCovid19(req.body.idClient, req.body.dateStart, req.body.dateEnd)
+            result = await covid19.createCovid19(req.body.idClient, req.body.dateStart, req.body.dateEnd)
         else {
-            await covid19.updateCovid(req.body.idClient, req.body.dateStart, req.body.dateEnd);
+            result = await covid19.updateCovid(req.body.idClient, req.body.dateStart, req.body.dateEnd);
         }
         res.json(result);
     } catch (err) {
